@@ -22,5 +22,17 @@ fruit_colors = {banana: 'yellow', orange: 'orange', avocado: 'green'}
 p fruit_colors[:banana].upcase  # => "YELLOW"
 p fruit_colors[:apple]  # => nil
 p fruit_colors[:apple].upcase  # => undefined method `upcase' for nil:NilClass (NoMethodError)
-p Nilbogger::nil_try{fruit_colors[:apple].upcase}  # => nil
+```
+
+With Nilbogger:
+```
+p Nilbogger::nil_try{ fruit_colors[:banana].upcase }  # => "YELLOW"
+p Nilbogger::nil_try{ fruit_colors[:apple].upcase }  # => nil
+```
+
+Using Nilbogger custom return values:
+
+```
+p Nilbogger::nil_try(false){ fruit_colors[:banana].upcase }  # => "YELLOW"
+p Nilbogger::nil_try(false){ fruit_colors[:apple].upcase }  # => false
 ```
