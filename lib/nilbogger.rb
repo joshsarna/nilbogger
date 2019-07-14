@@ -1,15 +1,9 @@
 module Nilbogger
-  def self.nil_try
+  def self.nil_try(return_value = nil)
     begin
       yield
     rescue
-      return nil
+      return return_value
     end
   end
 end
-
-fruit_colors = {banana: 'yellow', orange: 'orange', avocado: 'green'}
-p fruit_colors[:banana].upcase  # => "YELLOW"
-p fruit_colors[:apple]
-p Nilbogger::nil_try{fruit_colors[:apple].upcase}
-p fruit_colors[:apple].upcase
