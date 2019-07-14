@@ -16,6 +16,8 @@ Install: `gem install nilbogger`
 
 ### Usage
 
+#### NoMethodError
+
 ```
 fruit_colors = {banana: 'yellow', orange: 'orange', avocado: 'green'}
 
@@ -35,4 +37,28 @@ Using Nilbogger custom return values:
 ```
 p Nilbogger::nil_try(false){ fruit_colors[:banana].upcase }  # => "YELLOW"
 p Nilbogger::nil_try(false){ fruit_colors[:apple].upcase }  # => false
+```
+
+#### Other Errors
+
+```
+Nilbogger::try{ x = a }
+p "code continues to run" # => "code continues to run"
+p Nilbogger.errors  # => [#<NameError: undefined local variable or method `a' for main:Object>]
+```
+
+`Nilbogger::try` also accepts an optional custom return value
+
+```
+p Nilbogger::try{ x = a }  # => #<NameError: undefined local variable or method `a' for main:Object>
+p Nilbogger::try(false){ x = b }  # => false
+p Nilbogger::errors  # => [#<NameError: undefined local variable or method `a' for main:Object>, #<NameError: undefined local variable or method `b' for main:Object>]
+```
+
+`Nilbogger::nil_try` will also populate the `errors` array while allowing the code to run when executing an error other than `NoMethodError`. (Custom return values don't work in this case, though.)
+
+```
+p Nilbogger::nil_try{ x = a }  # => #<NameError: undefined local variable or method `a' for main:Object>
+p Nilbogger::nil_try(false){ x = b }  # => #<NameError: undefined local variable or method `b' for main:Object>
+p Nilbogger::errors  # => [#<NameError: undefined local variable or method `a' for main:Object>, #<NameError: undefined local variable or method `b' for main:Object>]
 ```
