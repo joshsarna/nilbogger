@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'nilbogger'
-  s.version     = '0.0.3'
+  s.version     = '0.0.4'
   s.date        = '2019-07-14'
   s.summary     = "Nilclass Protection"
   s.description = "A gem that protects against method calls on nilClass"
