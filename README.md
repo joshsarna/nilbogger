@@ -87,7 +87,6 @@ p Nilbogger::nil_try(false){ x = b }
 # => #<NameError: undefined local variable or method `b' for main:Object>
 
 p Nilbogger::errors
-# => [#<NameError: undefined local variable or method 
-`a' for main:Object>,
+# => [#<NameError: undefined local variable or method `a' for main:Object>,
 #<NameError: undefined local variable or method `b' for main:Object>]
 ```
